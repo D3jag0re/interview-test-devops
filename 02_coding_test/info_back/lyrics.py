@@ -14,9 +14,11 @@ token = constants.api_token
 #artist = genius.search_artist("Metallica", max_songs=3, sort="title")
 #print(artist.songs)
 
+
+# Print Lyrics of a Song
 genius = Genius(token)
 artist = genius.search_artist("Metallica", max_songs=3, sort='popularity')
-song = "One"
+song = input('What is the song title you want lyrics for? ')
 song = artist.song(song)
 print(song.lyrics)
 
