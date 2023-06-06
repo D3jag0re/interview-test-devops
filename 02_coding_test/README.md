@@ -11,5 +11,7 @@ Will be doing this to backup a "dummy" DB stored locally up to an Azure blob.
 
 ## Getting Some Information Back From an External Source and Presenting it to the End User
 
-Going to use lyricsgenius to get lyrics for a song, then parse the JSON. 
-Also add a counter for top 5 words used in the song. 
+Uses Genuis to get lyrics for a song, removes articles, then displays the top 5 common words and their count.
+
+Would like to turn all of these into a cmd line utility where arguments can be passed right into the cmd line "for ex. lyrics.py -artist "Metallica" -song "One"" or if not put it it asks for both artist
+and song to be inputted.  
