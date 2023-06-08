@@ -2,17 +2,23 @@ from lyricsgenius import Genius
 import constants
 import re 
 
-
-# Make some functions so you can call on each. i.e. just pull lyrics, sort, etc. 
-
-
 # Use another untracked file for this. Use variable and import.
 token = constants.api_token 
 
+opening_line = """---------------------------------------------------- \n
+Successful Launch! Please See Below For Instructions \n  
+----------------------------------------------------"""
 
-# List songs by an artist 
+print(opening_line)
+print("\nWhat would you like to do?\n")
+print("1. Top 5 Most Popular Songs By An Artist?")
+print("2. Top 5 Most Used Words In a Song?\n")
+choice = input("Please Make Your Selection:")
+
+
+# List songs by an artist by popularity
 #genius= Genius(token)
-#artist = genius.search_artist("Metallica", max_songs=3, sort="title")
+#artist = genius.search_artist("Metallica", max_songs=3, sort="popularity")
 #print(artist.songs)
 
 
