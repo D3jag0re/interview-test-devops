@@ -1,9 +1,9 @@
 # Lyrics
 This simple Python app gives the user three options and then retrieves the data.
 
-Option 1 is to list top 3 songs of an artist sorted by popularity
-Option 2 is to list the top 5 most common words in a song (not including words like I, me, you, and, the, etc.)
-Option 3 is to display the lyrics of a song
+- Option 1 is to list top 3 songs of an artist sorted by popularity
+- Option 2 is to list the top 5 most common words in a song (not including words like I, me, you, and, the, etc.)
+- Option 3 is to display the lyrics of a song
 
 # Get Started 
 
