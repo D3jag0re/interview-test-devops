@@ -25,9 +25,16 @@ First we will need to sign up for a (free) account that authorizes access to [th
 
 You will then need to create a file **in this directory** called **contants.py**, it should contain the following:
 
-```api_token= '<your_client_access_token_from_Genius>```
+```api_token= '<your_client_access_token_from_Genius>' ```
 
+## Running The Program
 
+From this directory run 
+``` py lyrics.py ```
+
+## Timeout Error
+
+Please note that sometimes when running option 1 (top 3 songs by and artist) the Genius API will timeout and throw an error. If this occurs please run again.
 
 
 
@@ -38,3 +45,4 @@ You will then need to create a file **in this directory** called **contants.py**
 - [X] Make opening a function
 - [X] Make Each option a Function
 - [ ] Include an input error on selection and loop back 
+- [ ] Make CLI and be able to pass in arguments right away (V2)
