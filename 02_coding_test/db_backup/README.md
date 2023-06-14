@@ -8,6 +8,8 @@ For this I will be backing up a "dummy" database locally, and sending the output
 
 ## Get a Database 
 
+I decided to grab an example MySQL database from [HERE](https://dev.mysql.com/doc/index-other.html). I chose the 'world database' but it does not matter which one you chose. 
+
 ## Create your vars file 
 
 ## Run The Code  
