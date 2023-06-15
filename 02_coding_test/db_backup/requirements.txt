@@ -1,2 +1,4 @@
 pyodbc 
 azure-storage-blob 
+mysql
+mysql-connector-python
