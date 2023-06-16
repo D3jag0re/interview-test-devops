@@ -40,9 +40,10 @@ container_name = ''
 
 blob_name = ''
 
-
+---------------------------------------------
 
 ## Run The Code 
 
-From the directory run 'py backup.py'. 
+From the directory run 'py backup.py'.  
+
 Note: mysqldump will warn you about using a passwork on the CLI. The program will still execute correctly. 
