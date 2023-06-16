@@ -36,8 +36,10 @@ db_password = ''
 
 Azure Blob Storage Details 
 
-az_connection_string = ''
-container_name = ''
+az_connection_string = ''  
+
+container_name = ''  
+
 blob_name = ''
 
 ----------------------------------------------------
