@@ -21,8 +21,6 @@ I decided to grab an example MySQL database from [HERE](https://dev.mysql.com/do
 Create a file in this directory called 'var.py' and fill in your information. It should contain the following:
 
 ----------------------------------------------------
-This File stores all the variables to run backup.py
- ----------------------------------------------------
 
 Database Connection Details 
 
@@ -42,9 +40,7 @@ container_name = ''
 
 blob_name = ''
 
-----------------------------------------------------
-End of File 
- ----------------------------------------------------
+
 
 ## Run The Code 
 
