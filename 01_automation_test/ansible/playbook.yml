@@ -1,0 +1,71 @@
+# This playbook will pull the nginx image from dockerhub, install unzip, download static content, then serve to port 80 on localhost 
+
+
+# Make sure Docker is installed and running 
+
+- hosts: localhost
+  become: true
+  tasks:
+    - name: apt update
+      apt: update_cache=yes
+    - name: Install Docker Engine
+      apt:
+        name: docker.io
+        state: present
+    - name: Install Docker CLI
+      apt:
+        name: docker-compose
+        state: present
+    - name: Install pip3
+      apt:
+        name: python3-pip
+        state: present
+    - name: pip3 docker
+      command: "pip3 install docker"
+    - name: Install Unzip package
+      apt:
+        name: unzip
+        state: present
+
+    #- name: Start Docker service (WSL issue here)
+    #  service:
+    #    name: docker
+    #    state: started
+    #    enabled: true
+
+    - name: Pull nginx Docker image
+      docker_image:
+        name: nginx
+        source: pull
+
+    - name: Run nginx Docker container
+      docker_container:
+        name: nginx
+        image: nginx
+        state: started
+        ports:
+          - "80:80"
+
+# Find why we need to do exec and why ansible modules would not work (almost like it was trying to run on host...probably need to define / change hosts: from localhost to webservers)
+# Download and unzip static content
+
+    - name: Download static content
+      command: docker exec nginx curl -o /usr/share/nginx/html/static_content.zip https://html5up.net/massively/download
+      #get_url:
+      #  url: https://html5up.net/massively/download
+      #  dest: /usr/share/nginx/html/static_content.zip
+
+    - name: Unzip static content
+      #unarchive:
+        #src: /usr/share/nginx/html/static_content.zip
+        #dest: /usr/share/nginx/html
+        #remote_src: yes
+      command: docker exec nginx unzip -o /usr/share/nginx/html/static_content -d /usr/share/nginx/html
+      args:
+        creates: /usr/share/nginx/html/index.html
+
+    - name: Restart Nginx service
+      command: docker exec nginx nginx -s reload
+      #service:
+      #  name: nginx
+      #  state: restarted

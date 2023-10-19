@@ -1,0 +1,57 @@
+# This playbook will build an image using local dockerfile, download static content, then serve to port 80 on localhost 
+
+# Note other dependencies
+# apt install python3-pip
+# pip3 install docker 
+
+# Make sure Docker is installed and running 
+
+- hosts: localhost
+  #become: yes
+  tasks:
+    - name: Install Docker Engine
+      apt:
+        name: docker.io
+        state: present
+    - name: Install Docker CLI
+      apt:
+        name: docker-compose
+        state: present
+    - name: Start Docker service
+      service:
+        name: docker
+        state: started
+        enabled: true
+
+# Build Docker image 
+
+    - name: Build Docker image for the web server
+      docker_image:
+        name: my_web_server_image
+        source: build
+        path: ../dockerfile
+        state: present
+
+# Start Container 
+
+    - name: Run the container
+      docker_container:
+        name: my_web_server_container
+        image: my_web_server_image
+        ports:
+          - "80:80"
+        state: started
+
+
+# Download and unzip static content
+
+    - name: Download static content
+      get_url:
+        url: https://html5up.net/massively/download
+        dest: /usr/share/nginx/html/static_content.zip
+
+    - name: Unzip static content
+      command: unzip -o /usr/share/nginx/htmlstatic_content.zip -d /usr/share/nginx/html
+      args:
+        creates: /usr/share/nginx/html/index.html
+

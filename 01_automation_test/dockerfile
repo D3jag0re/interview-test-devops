@@ -1,0 +1,5 @@
+# Base Image
+FROM nginx
+
+# Install unzip 
+RUN apt-get update && apt-get install -y unzip && apt-get clean

@@ -4,5 +4,7 @@
 			"path": "."
 		}
 	],
-	"settings": {}
+	"settings": {
+		"ansible.python.interpreterPath": "c:\\Users\\Mat B\\AppData\\Local\\Programs\\Python\\Python39\\python.exe"
+	}
 }
