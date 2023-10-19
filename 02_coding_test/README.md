@@ -7,8 +7,6 @@ Going to try and do one of each of the examples presented.
 
 Will be doing this to backup a "dummy" DB stored locally up to an Azure blob. 
 
-## A Basic API to Provide You With Some Useful Information
-
 ## Getting Some Information Back From an External Source and Presenting it to the End User
 
 Uses Genuis to get lyrics for a song, removes articles, then displays the top 5 common words and their count.
