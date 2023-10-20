@@ -46,7 +46,7 @@
         ports:
           - "80:80"
 
-# Find why we need to do exec and why ansible modules would not work (almost like it was trying to run on host...probably need to define / change hosts: from localhost to webservers)
+# Find why we need to do exec and why ansible modules would not work (almost like it was trying to run on host...probably need to define / change hosts: from localhost to webservers). Duh. 
 # Download and unzip static content
 
     - name: Download static content
