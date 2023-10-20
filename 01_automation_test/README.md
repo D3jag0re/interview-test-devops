@@ -5,3 +5,6 @@ Here I will be using Ansible to automate the installation of a Web Server servin
 - Providing a Vagrantfile to allow testing by simply running 'vagrant up'.
 
 Have to decide between pulling the image from dockerhub, then adding unzip etc. or creating own image using nginx base, have it install to deploy then ansible just does the rest...
+
+RUN:
+ansible-playbook <playbook> --ask-become-pass < this is important for local when you have admin creds

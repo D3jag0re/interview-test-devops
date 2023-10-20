@@ -1,14 +1,13 @@
-# This playbook will build an image using local dockerfile, download static content, then serve to port 80 on localhost 
+# This playbook will pull the nginx image from dockerhub, install unzip, download static content, then serve to port 80 on localhost 
 
-# Note other dependencies
-# apt install python3-pip
-# pip3 install docker 
 
 # Make sure Docker is installed and running 
 
 - hosts: localhost
-  #become: yes
+  become: true
   tasks:
+    - name: apt update
+      apt: update_cache=yes
     - name: Install Docker Engine
       apt:
         name: docker.io
@@ -17,41 +16,57 @@
       apt:
         name: docker-compose
         state: present
-    - name: Start Docker service
-      service:
-        name: docker
-        state: started
-        enabled: true
-
-# Build Docker image 
-
-    - name: Build Docker image for the web server
-      docker_image:
-        name: my_web_server_image
-        source: build
-        path: ../dockerfile
+    - name: Install pip3
+      apt:
+        name: python3-pip
+        state: present
+    - name: pip3 docker
+      command: "pip3 install docker"
+    - name: Install Unzip package
+      apt:
+        name: unzip
         state: present
 
-# Start Container 
+    #- name: Start Docker service (WSL issue here)
+    #  service:
+    #    name: docker
+    #    state: started
+    #    enabled: true
 
-    - name: Run the container
+    - name: Pull nginx Docker image
+      docker_image:
+        name: nginx
+        source: pull
+
+    - name: Run nginx Docker container
       docker_container:
-        name: my_web_server_container
-        image: my_web_server_image
+        name: nginx
+        image: nginx
+        state: started
         ports:
           - "80:80"
-        state: started
-
+    - name: Add host to group 'containers' #with variable foo=42
+      add_host:
+        name: nginx
+        groups: containers
+        #foo: 42
 
 # Download and unzip static content
 
-    - name: Download static content
+- hosts: containers 
+  become: true
+  tasks:
+    - name: Download a file
       get_url:
         url: https://html5up.net/massively/download
-        dest: /usr/share/nginx/html/static_content.zip
-
-    - name: Unzip static content
-      command: unzip -o /usr/share/nginx/htmlstatic_content.zip -d /usr/share/nginx/html
-      args:
-        creates: /usr/share/nginx/html/index.html
-
+        dest: /var/www/html/
+    - name: Unzip archive
+      unarchive:
+        src: /var/www/html/webtemplate
+        dest: /var/www/html/
+        remote_src: true
+        extra_opts: "-q" # optional: quiet mode
+    - name: Restart Nginx service
+      service:
+        name: nginx
+        state: restarted
