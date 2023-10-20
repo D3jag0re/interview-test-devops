@@ -27,4 +27,8 @@ This will also store the state file locally however I did provided a commented o
 
 ## How to run
 
-... naming conv. 
+
+
+Notes:\
+... naming conv. \
+pipeline with ex var in az \
