@@ -1,10 +1,11 @@
 # Automation_Test
 Here I will be using Ansible to automate the installation of a Web Server serving up some static content. I will also be satisfying the "bonus point" requirements of the following:
 
-- Using Containers as part of your automation.
-- Providing a Vagrantfile to allow testing by simply running 'vagrant up'.
+[X] Using Containers as part of your automation.
+[ ] Providing a Vagrantfile to allow testing by simply running 'vagrant up'.**
 
-Have to decide between pulling the image from dockerhub, then adding unzip etc. or creating own image using nginx base, have it install to deploy then ansible just does the rest...
+** Not going to use vagrant for now since this is being developed and run on WSL2 and there are some tricky bits there.
 
-RUN:
-ansible-playbook <playbook> --ask-become-pass < this is important for local when you have admin creds
+TO RUN:
+
+ansible-playbook <playbook_name> --ask-become-pass < this is important for local when you have admin creds. 
