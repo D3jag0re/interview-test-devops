@@ -8,5 +8,8 @@ Here I will be using Ansible to automate the installation of a Web Server servin
 
 TO RUN:
 
+In WSL:
+
+Navigate to where yml file exists or copy it into directory in WSL
 use playbook_exec.yml
 ansible-playbook <playbook_name> --ask-become-pass < this is important for local when you have admin creds. 
