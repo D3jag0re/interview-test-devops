@@ -7,14 +7,14 @@ module "resource_group_main" {
   rg_name     = "main-${local.env}-${local.loc}-rg-01"
   rg_location = local.location
   tags = {
-    appName = "main"
-    environment     = "${local.env}"
-    costCenter      = "demo"
-    createdBy       = "Terraform"
-    technicalOwner  = "${local.technicalOwner}"
-    businessOwner   = "${local.businessOwner}"
-    projectID       = "742617000027"
-    creationDate    = timestamp()
+    appName        = "main"
+    environment    = "${local.env}"
+    costCenter     = "demo"
+    createdBy      = "Terraform"
+    technicalOwner = "${local.technicalOwner}"
+    businessOwner  = "${local.businessOwner}"
+    projectID      = "742617000027"
+    creationDate   = timestamp()
   }
 }
 
@@ -47,7 +47,7 @@ module "subnet_services" {
 }
 
 module "subnet_apps" {
-  source                 = "../../modules/platform/subnets"
+  source                 = "../modules/platform/subnets"
   rg_name                = module.resource_group_main.rg_name
   vnet_name              = module.virtual_network_main.vnet_name
   subnet_name            = "apps-${local.env}-${local.loc}-snet"
@@ -56,7 +56,7 @@ module "subnet_apps" {
 }
 
 module "subnet_databases" {
-  source                 = "../../modules/platform/subnets"
+  source                 = "../modules/platform/subnets"
   rg_name                = module.resource_group_main.rg_name
   vnet_name              = module.virtual_network_main.vnet_name
   subnet_name            = "databases-${local.env}-${local.loc}-snet"
@@ -268,8 +268,8 @@ module "mssql_server" {
 
 module "mssql_database" {
   source             = "../modules/app/sql_db"
-  subscription_id    = local.subscription_id
   resourcegroup_name = module.resource_group_data.rg_name
+  server_id          = module.mssql_server.mssql.id
   sql_servername     = module.mssql_server.sql_server_name
   sql_dbname         = "data-${local.env}-${local.loc}-sqldb"
   sqldb_tier         = "Standard"
