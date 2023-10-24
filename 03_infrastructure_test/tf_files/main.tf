@@ -215,18 +215,6 @@ module "app_insights" {
 # App Service 
 # ------------------------------ #
 
-/*
-module "app_service_plan_linux" {
-  source                    = "../modules/app/app_service_plan"
-  rg_name                   = module.resource_group_main.rg_name
-  app_service_plan_location = local.location
-  app_service_plan_name     = "app-${local.env}-${local.loc}-appsvcplan"
-  os_type                   = "Linux"
-  sku                       = "P1v2"
-  depends_on                = [module.resource_group_main]
-}
-*/
-
 module "app_service_plan_linux" {
   source                    = "../modules/app/service_plan"
   rg_name                   = module.resource_group_main.rg_name

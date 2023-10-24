@@ -32,3 +32,4 @@ This will also store the state file locally however I did provided a commented o
 Notes:\
 ... naming conv. \
 pipeline with ex var in az \
+terraform show -json tfplan\ 
