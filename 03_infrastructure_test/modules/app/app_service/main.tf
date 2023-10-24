@@ -51,21 +51,18 @@ resource "azurerm_app_service_virtual_network_swift_connection" "main" {
   subnet_id      = local.subnet_id
 }
 
+/*
 resource "azurerm_monitor_diagnostic_setting" "diag_la_workspace" {
   name               = "diag-${var.app_service_name}"
   target_resource_id = azurerm_app_service.app_service_web.id
   log_analytics_workspace_id = var.la_workspace_id
 
-  dynamic "log" {
-    iterator = entry
-    for_each = local.log_analytics_log_categories
-    content {
-        category = entry.value
-        enabled  = true
+  enabled_log {
+    category = "AuditEvent"
 
-        #retention_policy {
-        #enabled = false
-        #}
+    retention_policy {
+      enabled = false
+
     }
    
   }
@@ -78,3 +75,5 @@ resource "azurerm_monitor_diagnostic_setting" "diag_la_workspace" {
     #}
   }
 }
+
+*/

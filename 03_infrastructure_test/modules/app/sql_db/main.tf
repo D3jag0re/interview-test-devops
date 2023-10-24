@@ -17,7 +17,7 @@ resource "azurerm_mssql_database" "test" {
 
 resource "azurerm_monitor_diagnostic_setting" "diag_la_workspace" {
   name               = "diag-${var.sql_dbname}"
-  target_resource_id = azurerm_mssql_database.sql_db.id
+  target_resource_id = azurerm_mssql_database.test.id
   log_analytics_workspace_id = var.la_workspace_id
 
   enabled_log {
