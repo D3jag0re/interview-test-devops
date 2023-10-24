@@ -9,7 +9,7 @@ locals {
   }
   log_analytics_log_categories     = ["AppServiceHTTPLogs", "AppServiceConsoleLogs","AppServiceAppLogs","AppServiceAuditLogs","AppServiceIPSecAuditLogs","AppServicePlatformLogs"]
 }
-data "azurerm_app_service_plan" "asp" {
+data "azurerm_service_plan" "asp" {
   name                = var.app_service_plan_name
   resource_group_name = var.app_service_plan_rg_name
 }
@@ -22,7 +22,7 @@ resource "azurerm_app_service" "app_service_web" {
   name                = var.app_service_name
   location            = var.app_service_location
   resource_group_name = var.rg_name
-  app_service_plan_id = data.azurerm_app_service_plan.asp.id
+  app_service_plan_id = data.azurerm_service_plan.asp.id
   app_settings = local.web_app_settings
   https_only = true
   client_affinity_enabled = true
