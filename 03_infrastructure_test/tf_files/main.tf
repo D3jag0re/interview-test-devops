@@ -7,7 +7,7 @@ module "resource_group_main" {
   rg_name     = "main-${local.env}-${local.loc}-rg-01"
   rg_location = local.location
   tags = {
-    applicationName = "main"
+    appName = "main"
     environment     = "${local.env}"
     costCenter      = "demo"
     createdBy       = "Terraform"
@@ -47,7 +47,7 @@ module "subnet_services" {
 }
 
 module "subnet_apps" {
-  source                 = "../../Modules/platform/subnets"
+  source                 = "../../modules/platform/subnets"
   rg_name                = module.resource_group_main.rg_name
   vnet_name              = module.virtual_network_main.vnet_name
   subnet_name            = "apps-${local.env}-${local.loc}-snet"
@@ -56,7 +56,7 @@ module "subnet_apps" {
 }
 
 module "subnet_databases" {
-  source                 = "../../Modules/platform/subnets"
+  source                 = "../../modules/platform/subnets"
   rg_name                = module.resource_group_main.rg_name
   vnet_name              = module.virtual_network_main.vnet_name
   subnet_name            = "databases-${local.env}-${local.loc}-snet"
@@ -201,7 +201,7 @@ module "private_endpoint_appservice_linux" {
 # ------------------------------ #
 
 module "app_insights" {
-  source                = "../modules/application/app_insights"
+  source                = "../modules/app/app_insights"
   resourcegroup_name    = module.resource_group_main.rg_name
   app_insights_location = local.location
   app_insights_name     = "shared-${local.env}-${local.loc}-appis"
@@ -216,7 +216,7 @@ module "app_insights" {
 # ------------------------------ #
 
 module "app_service_plan_linux" {
-  source                    = "../modules/application/app_service_plan"
+  source                    = "../modules/app/app_service_plan"
   rg_name                   = module.resource_group_main.rg_name
   app_service_plan_location = local.location
   app_service_plan_name     = "app-${local.env}-${local.loc}-appsvcplan"
@@ -226,7 +226,7 @@ module "app_service_plan_linux" {
 }
 
 module "app_service_linux" {
-  source                   = "../modules/application/app_service"
+  source                   = "../modules/app/app_service"
   subscription_id          = local.subscription_id
   rg_name                  = module.resource_group_main.rg_name
   app_service_plan_rg_name = module.app_service_plan_linux.app_service_plan_rg_name
@@ -255,7 +255,7 @@ module "app_service_linux" {
 # ------------------------------ #
 
 module "mssql_server" {
-  source                = "../modules/application/sql_server"
+  source                = "../modules/app/sql_server"
   sql_server_name       = "data-${local.env}-${local.loc}-sqlsrv"
   sql_server_rg_name    = module.resource_group_main.rg_name
   sql_server_location   = local.location
@@ -267,7 +267,7 @@ module "mssql_server" {
 }
 
 module "mssql_database" {
-  source             = "../modules/application/sql_db"
+  source             = "../modules/app/sql_db"
   subscription_id    = local.subscription_id
   resourcegroup_name = module.resource_group_data.rg_name
   sql_servername     = module.mssql_server.sql_server_name
