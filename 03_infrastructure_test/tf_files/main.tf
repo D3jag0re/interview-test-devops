@@ -225,7 +225,7 @@ module "app_service_plan_linux" {
   depends_on                = [module.resource_group_main]
 }
 
-
+/*
 module "app_service_linux" {
   source                   = "../modules/app/app_service"
   subscription_id          = local.subscription_id
@@ -250,7 +250,16 @@ module "app_service_linux" {
   la_workspace_id          = module.la_workspace.ws_id
   depends_on               = [module.app_service_plan_linux, module.subnet_linux_app_integration_main, module.app_insights]
 }
+*/
 
+module "app_service_linux" {
+  source  = "../modules/app/app_service_linux"
+  app_service_name = "app-${local.env}-${local.loc}-appservice"
+  rg_name = module.resource_group_main.rg_name
+  app_service_location = local.location
+  service_plan_id = module.app_service_plan_linux.app_service_plan_id 
+
+}
 # ------------------------------ #
 # Databases
 # ------------------------------ #

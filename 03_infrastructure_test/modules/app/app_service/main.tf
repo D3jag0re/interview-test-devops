@@ -39,7 +39,6 @@ resource "azurerm_app_service" "app_service_web" {
     java_container = (var.kind != "linux" && var.runtime_stack == "java") ? var.java_container : null
     java_container_version = (var.kind != "linux" && var.runtime_stack == "java") ? var.java_container_version: null
   }
-
 }
 
 #-------------------------------------------------------------
