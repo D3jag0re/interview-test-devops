@@ -253,11 +253,11 @@ module "app_service_linux" {
 */
 
 module "app_service_linux" {
-  source  = "../modules/app/app_service_linux"
-  app_service_name = "app-${local.env}-${local.loc}-appservice"
-  rg_name = module.resource_group_main.rg_name
+  source               = "../modules/app/app_service_linux"
+  app_service_name     = "app-${local.env}-${local.loc}-appservice"
+  rg_name              = module.resource_group_main.rg_name
   app_service_location = local.location
-  service_plan_id = module.app_service_plan_linux.app_service_plan_id 
+  service_plan_id      = module.app_service_plan_linux.app_service_plan_.id
 
 }
 # ------------------------------ #
