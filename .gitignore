@@ -3,3 +3,6 @@ var.py
 .terraform*
 *.tfplan 
 tfplan
+localsreal.tf
+terraform.tfstate*
+terraform.tfstate.backup

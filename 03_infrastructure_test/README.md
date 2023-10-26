@@ -33,3 +33,4 @@ Notes:\
 ... naming conv. \
 pipeline with ex var in az \
 terraform show -json tfplan\ 
+provider registration (req + error which can stop deploy)

@@ -10,9 +10,9 @@ resource "azurerm_mssql_database" "test" {
   collation      = "SQL_Latin1_General_CP1_CI_AS"
   license_type   = "LicenseIncluded"
   max_size_gb    = var.max_size_gb
-  read_scale     = true
+  read_scale     = false
   sku_name       = var.sku_name
-  zone_redundant = true
+  zone_redundant = false
 }
 
 resource "azurerm_monitor_diagnostic_setting" "diag_la_workspace" {
