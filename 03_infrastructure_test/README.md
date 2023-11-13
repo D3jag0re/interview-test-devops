@@ -33,4 +33,5 @@ Notes:\
 ... naming conv. \
 pipeline with ex var in az \
 terraform show -json tfplan\ 
-provider registration (req + error which can stop deploy)
+provider registration (req + error which can stop deploy)\
+...have basic nginx container deploy to app service? Eventually deploy custom but where content is loaded via pipeline (seprate repo) 
